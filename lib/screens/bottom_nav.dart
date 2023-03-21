@@ -19,11 +19,11 @@ class _AnimatedBarExampleState extends State<AnimatedBarExample> {
   int selectedIndex = 0;
 
   List<Widget> widgets = [
-    HomePage(),
-    FeedPage(),
-    SizedBox(),
-    ChatScreen(),
-    ProfilePage(),
+    const HomePage(),
+    const FeedPage(),
+    const SizedBox(),
+    const ChatScreen(),
+    const ProfilePage(),
   ];
 
   @override

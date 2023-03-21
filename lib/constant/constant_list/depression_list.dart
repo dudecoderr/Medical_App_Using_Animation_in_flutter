@@ -5,56 +5,73 @@ import 'package:medical_flutter_ui/constant/string_constant.dart';
 import '../color_constant.dart';
 
 
-class ProfileListContainer extends StatelessWidget {
-  const ProfileListContainer({super.key});
+class DepressionListContainer extends StatelessWidget {
+  const DepressionListContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height:390.h,
-      child: ListView.builder(
-        physics: const AlwaysScrollableScrollPhysics(),
-        itemCount: 1,
-        itemBuilder: (BuildContext context, int index) {
-          return Column(
-            children: [
-              SizedBox(
-                height: 10.h,
-              ),
-              const ProfileList(
-                titles: handWrist,
-                subtitle: hour1,
-                desc1: replies1,
-                desc: "11",
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              const ProfileList(
-                desc: "9",
-                titles: que2,
-                desc1: replies2,
-                subtitle: hour2,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-            ],
-          );
-        },
+    return SingleChildScrollView(
+      child: SizedBox(
+        height:380.h,
+        child: ListView.builder(physics:  const AlwaysScrollableScrollPhysics(),
+          itemCount: 1,
+          itemBuilder: (BuildContext context, int index) {
+            return Column(
+              children: [
+                SizedBox(
+                  height: 10.h,
+                ),
+                const DepressionList(
+                  titles: que12,
+                  subtitle: hour1,
+                  desc1: replies1,
+                  desc: "11",
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                const DepressionList(
+                  desc: "9",
+                  titles: que9,
+                  desc1: replies2,
+                  subtitle: hour2,
+                ),  SizedBox(
+                  height: 10.h,
+                ),
+                const DepressionList(
+                  desc: "8",
+                  titles: que10,
+                  desc1: replies1,
+                  subtitle: hour1,
+                ),  SizedBox(
+                  height: 10.h,
+                ),
+                const DepressionList(
+                  desc: "15",
+                  titles: que11,
+                  desc1: replies2,
+                  subtitle: hour2,
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
 }
 
-class ProfileList extends StatelessWidget {
+class DepressionList extends StatelessWidget {
   final String titles;
 
   final String subtitle;
   final String? desc;
   final String? desc1;
 
-  const ProfileList({
+  const DepressionList({
     Key? key,
     required this.titles,
     required this.subtitle,
@@ -75,11 +92,11 @@ class ProfileList extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(accidentsInjuries,
+              Text(depression,
                   style: TextStyle(
                     color: kTealColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 17.sp,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 15.sp,
                   )),
               Icon(
                 Icons.more_horiz_rounded,

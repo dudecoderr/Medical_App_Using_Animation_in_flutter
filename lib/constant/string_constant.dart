@@ -25,12 +25,21 @@ const String all = "All";
 const String general = "General";
 const String covid = "COVID-19";
 const String allergies = "Allergies";
+const String depression = "Depression";
 const String hour1 = "wildanwari27 • 2h ago";
 const String hour2 = "arifaridli88 • 3h ago";
 const String replies1 = " 28 replies";
 const String replies2 = " 3 replies";
 const String que1 = "How long after COVID til I can be re-infected?";
 const String que2 = "Anyone get terrible acid reflux after having COVID?";
+const String que5 = "What should I know about cholesterol?";
+const String que6 = "What kind of valve problems affects the heart? ";
+const String que7 = "What is the difference between a cardiologist and an electrophysiologist? ";
+const String que8 = "Blood pressure:  How high is too high?";
+const String que9 = "Do most people with depression attempt to commit suicide?";
+const String que10 = "Why are women more likely to get depression?";
+const String que11 = " Will someone who has had depression get it again?";
+const String que12 = "warnings about drug interactions depression?";
 
 ///==================chat page ======================
 

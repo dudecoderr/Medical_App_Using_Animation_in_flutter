@@ -277,7 +277,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               SizedBox(
-                height: 20.h,
+                height: 10.h,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

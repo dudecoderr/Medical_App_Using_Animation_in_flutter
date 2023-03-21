@@ -10,37 +10,39 @@ class AllergiesListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height:400.h,
-      child: ListView.builder(physics:  const NeverScrollableScrollPhysics(),
-        itemCount: 1,
-        itemBuilder: (BuildContext context, int index) {
-          return Column(
-            children: [
-              SizedBox(
-                height: 10.h,
-              ),
-              const AllergiesList(
-                titles: que3,
-                subtitle: hour1,
-                desc1: replies1,
-                desc: "11",
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              const AllergiesList(
-                desc: "9",
-                titles: que4,
-                desc1: replies2,
-                subtitle: hour2,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-            ],
-          );
-        },
+    return SingleChildScrollView(
+      child: SizedBox(
+        height:400.h,
+        child: ListView.builder(physics:  const NeverScrollableScrollPhysics(),
+          itemCount: 1,
+          itemBuilder: (BuildContext context, int index) {
+            return Column(
+              children: [
+                SizedBox(
+                  height: 10.h,
+                ),
+                const AllergiesList(
+                  titles: que3,
+                  subtitle: hour1,
+                  desc1: replies1,
+                  desc: "11",
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                const AllergiesList(
+                  desc: "9",
+                  titles: que4,
+                  desc1: replies2,
+                  subtitle: hour2,
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
