@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_flutter_ui/constant/color_constant.dart';
-
-import '../constant/image_constant.dart';
-import '../constant/list_constant.dart';
+import '../constant/constant_list/allergies_list.dart';
+import '../constant/constant_list/list_constant.dart';
 import '../constant/string_constant.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,7 +27,7 @@ class _HomePageState extends State<HomePage> {
       ])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Container(
+        body: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
@@ -268,6 +267,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
+
                     ///============constant DoctorList=====================
                     SizedBox(
                       height: 20.h,
@@ -275,11 +275,32 @@ class _HomePageState extends State<HomePage> {
                     const ListContainer(),
                   ],
                 ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 20.w),
+                    child: Text(
+                      threadYouMight,
+                      style: TextStyle(
+                        fontSize: 24.sp,
+                        fontFamily: "Montserrat",
+                        fontWeight: FontWeight.w600,
+                        color: kBlackColor,
+                      ),
+                    ),
+                  ),
+                  AllergiesListContainer(),
+                ],
               )
             ],
           ),
         ),
-      ),
+       ),
     );
   }
 }

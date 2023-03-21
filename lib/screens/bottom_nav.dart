@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:medical_flutter_ui/constant/color_constant.dart';
 
 import 'Profile_screen.dart';
+import 'chat_screen.dart';
 import 'feed_Screen.dart';
 import 'home_screen.dart';
 
@@ -21,7 +22,7 @@ class _AnimatedBarExampleState extends State<AnimatedBarExample> {
     HomePage(),
     FeedPage(),
     SizedBox(),
-    SizedBox(),
+    ChatScreen(),
     ProfilePage(),
   ];
 

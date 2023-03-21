@@ -12,6 +12,10 @@ const String doc3 = "Courtney Henry";
 const String desc2 = "Dermatology";
 const String desc3 = "Cardiology";
 const String hospital1 = "Siloam Hospital";
+const String threadYouMight = "Thread You Might Like";
+const String que3 = "it has been 2-3 days that I have these spots in my leg";
+const String que4 = "Lost the ability to sneeze 8days Scared .";
+const String replies3 = "5 replies";
 
 ///==================feed page ======================
 
@@ -28,10 +32,10 @@ const String replies2 = " 3 replies";
 const String que1 = "How long after COVID til I can be re-infected?";
 const String que2 = "Anyone get terrible acid reflux after having COVID?";
 
-///==================feed page ======================
+///==================chat page ======================
 
 const String consultation = "Consultation";
-const String searchChat = "search chat";
+const String searchChat = "Search chat";
 const String doc4 = "dr. Theresa Webb";
 const String doc5 = "dr. Wade Warren";
 const String doc6 = "dr. Dianne Russell";
@@ -47,8 +51,8 @@ const String profile = "Profile";
 const String doc7 = "Vicky Pradana Tasu";
 const String year1 = "29 years old";
 const String ago1 = "prdvicky • 2h ago";
-const String  weight = "• Weight";
-const String  height = "• Height";
+const String  weight = " Weight";
+const String  height = " Height";
 const String  kg = " 55kg";
 const String  cm = "170cm";
 const String  yourRecentThread = "Your Recent Thread";

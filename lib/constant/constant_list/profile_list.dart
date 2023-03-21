@@ -2,17 +2,18 @@ import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_flutter_ui/constant/string_constant.dart';
-import '../constant/color_constant.dart';
+import '../color_constant.dart';
 
 
-class FeedListContainer extends StatelessWidget {
-  const FeedListContainer({super.key});
+class ProfileListContainer extends StatelessWidget {
+  const ProfileListContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height:370.h,
+      height:390.h,
       child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: 1,
         itemBuilder: (BuildContext context, int index) {
           return Column(
@@ -20,8 +21,8 @@ class FeedListContainer extends StatelessWidget {
               SizedBox(
                 height: 10.h,
               ),
-              const FeedList(
-                titles: que1,
+              const ProfileList(
+                titles: handWrist,
                 subtitle: hour1,
                 desc1: replies1,
                 desc: "11",
@@ -29,7 +30,7 @@ class FeedListContainer extends StatelessWidget {
               SizedBox(
                 height: 10.h,
               ),
-              const FeedList(
+              const ProfileList(
                 desc: "9",
                 titles: que2,
                 desc1: replies2,
@@ -46,14 +47,14 @@ class FeedListContainer extends StatelessWidget {
   }
 }
 
-class FeedList extends StatelessWidget {
+class ProfileList extends StatelessWidget {
   final String titles;
 
   final String subtitle;
   final String? desc;
   final String? desc1;
 
-  const FeedList({
+  const ProfileList({
     Key? key,
     required this.titles,
     required this.subtitle,
@@ -74,11 +75,11 @@ class FeedList extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(covid,
+              Text(accidentsInjuries,
                   style: TextStyle(
                     color: kTealColor,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 17.sp,
                   )),
               Icon(
                 Icons.more_horiz_rounded,

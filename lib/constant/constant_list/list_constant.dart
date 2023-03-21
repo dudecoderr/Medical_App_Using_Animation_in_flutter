@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_flutter_ui/constant/string_constant.dart';
-import '../constant/color_constant.dart';
-import '../constant/image_constant.dart';
+import '../color_constant.dart';
+import '../image_constant.dart';
 
 class ListContainer extends StatelessWidget {
   const ListContainer({super.key});
@@ -23,16 +23,33 @@ class ListContainer extends StatelessWidget {
               const DoctorList(
                 titles: doc2,
                 subtitle: dermatology,
-                image: img1,desc: "4.9",
+                image: img1,
+                desc: "4.9",
               ),
               SizedBox(
                 width: 10.h,
               ),
               const DoctorList(
-                desc:" 4.5",
+                desc: " 4.5",
                 titles: doc3,
                 subtitle: cardiology,
                 image: img2,
+              ),  SizedBox(
+                width: 10.h,
+              ),
+              const DoctorList(
+                desc: " 4.7",
+                titles: doc1,
+                subtitle: cardiology,
+                image: img3,
+              ),  SizedBox(
+                width: 10.h,
+              ),
+              const DoctorList(
+                desc: " 4.4",
+                titles: doc4,
+                subtitle: cardiology,
+                image: img4,
               ),
             ],
           );
@@ -109,7 +126,7 @@ class DoctorList extends StatelessWidget {
               ],
             ),
             Text(
-              subtitle,
+              titles,
               style: TextStyle(
                 fontSize: 15.sp,
                 fontFamily: "Montserrat",
@@ -121,7 +138,7 @@ class DoctorList extends StatelessWidget {
               height: 5.h,
             ),
             Text(
-             titles,
+              subtitle,
               style: TextStyle(
                 fontSize: 14.sp,
                 fontFamily: "Montserrat",
