@@ -6,3 +6,6 @@ const String img3 =  "assets/doctor3.png";
 const String img4 =  "assets/doctor4.png";
 const String img5 =  "assets/doctor5.png";
 const String img6 =  "assets/doctor6.png";
+const String img7 =  "assets/doctor7.png";
+const String img8 =  "assets/doctor8.png";
+const String img9 =  "assets/doctor9.png";
