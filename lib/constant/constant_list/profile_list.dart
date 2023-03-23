@@ -13,7 +13,7 @@ class ProfileListContainer extends StatelessWidget {
     return SizedBox(
       height:390.h,
       child: ListView.builder(
-        physics: const AlwaysScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: 1,
         itemBuilder: (BuildContext context, int index) {
           return Column(

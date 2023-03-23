@@ -79,3 +79,8 @@ const String available1 = "4.9 • Available Mon - wed, 11.00 - 14.00";
 const String available2 = "4.8 • Available Mon - wed, 9.00 - 15.00";
 const String available3 = "4.7 . Available Tue - Thu, 10.00 - 14.00";
 
+
+
+///=================search page ======================
+
+const String searchDoctorName = "Search Doctor Name...";

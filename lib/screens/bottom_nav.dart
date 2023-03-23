@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medical_flutter_ui/constant/color_constant.dart';
-
+import 'Floating_screen.dart';
 import 'Profile_screen.dart';
 import 'chat_screen.dart';
 import 'feed_Screen.dart';
@@ -21,7 +21,7 @@ class _AnimatedBarExampleState extends State<AnimatedBarExample> {
   List<Widget> widgets = [
     const HomePage(),
     const FeedPage(),
-    const SizedBox(),
+    LocationPage(),
     const ChatScreen(),
     const ProfilePage(),
   ];
@@ -29,10 +29,10 @@ class _AnimatedBarExampleState extends State<AnimatedBarExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   body: IndexedStack(
-     index: selectedIndex,
-      children: widgets,
-    ),
+      body: IndexedStack(
+        index: selectedIndex,
+        children: widgets,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,

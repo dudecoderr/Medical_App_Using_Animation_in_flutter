@@ -4,7 +4,9 @@
         android:label="medical_flutter_ui"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        <activity
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyBslSv3BBnjN6hfX5qrHdXenvCQZ4I0HU0"/>
+       <activity
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
