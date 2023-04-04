@@ -46,7 +46,7 @@ class _DoctorImformationPageState extends State<DoctorImformationPage> {
                         children: AnimationConfiguration.toStaggeredList(
                           duration: const Duration(seconds: 2),
                           childAnimationBuilder: (widget) => SlideAnimation(
-                            horizontalOffset: MediaQuery.of(context).size.width / 2,
+                            horizontalOffset: MediaQuery.of(context).size.height / 2,
                             child: FadeInAnimation(child: widget),
                           ),
                           children: [
