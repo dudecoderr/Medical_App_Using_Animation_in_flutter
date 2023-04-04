@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:medical_flutter_ui/constant/image_constant.dart';
 import 'package:medical_flutter_ui/constant/string_constant.dart';
 import '../../screens/doctor_information_screen.dart';
@@ -11,57 +12,65 @@ class DoctorListContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: SizedBox(
-        height: 480.h,
-        child: ListView.builder(
-          itemCount: 2,
-          itemBuilder: (BuildContext context, int index) {
-            return Column(
-              children: [
-                SizedBox(
-                  height: 10.h,
-                ),
-                const DoctorList(
-                  image_location: img6,
-                  titles: doc7,
-                  subtitle: available1,
-                  desc: dermatology,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                const DoctorList(
-                  image_location: img5,
-                  desc: cardiology,
-                  titles: doc5,
-                  subtitle: available3,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                const DoctorList(
-                  image_location: img4,
-                  desc: dentistry,
-                  titles: doc3,
-                  subtitle: available2,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                const DoctorList(
-                  image_location: img3,
-                  desc: dermatology,
-                  titles: doc1,
-                  subtitle: available1,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-              ],
-            );
-          },
-        ),
-      ),
+      child: AnimationLimiter(
+        child: Column(
+          children: AnimationConfiguration.toStaggeredList(
+            duration: const Duration(seconds:2),
+            childAnimationBuilder: (widget) => SlideAnimation(
+              verticalOffset: MediaQuery.of(context).size.width / 2,
+              child: FadeInAnimation(child: widget),
+            ),
+            children: [  SizedBox(
+              height: 480.h,
+              child: ListView.builder(
+                itemCount: 2,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      const DoctorList(
+                        image_location: img6,
+                        titles: doc6,
+                        subtitle: available1,
+                        desc: dermatology,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      const DoctorList(
+                        image_location: img5,
+                        desc: cardiology,
+                        titles: doc5,
+                        subtitle: available3,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      const DoctorList(
+                        image_location: img4,
+                        desc: dentistry,
+                        titles: doc3,
+                        subtitle: available2,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      const DoctorList(
+                        image_location: img3,
+                        desc: dermatology,
+                        titles: doc1,
+                        subtitle: available1,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),],),),),
     );
   }
 }
@@ -85,12 +94,17 @@ class DoctorList extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(right: 20.w, left: 20.w),
       child: InkWell(
-        onTap: (){
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const DoctorImformationPage(),
-            ),
+        onTap: () {
+          showModalBottomSheet<void>(
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            context: context,
+            builder: (
+                BuildContext context,
+                ) {
+
+              return const DoctorImformationPage();
+            },
           );
         },
         child: Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:medical_flutter_ui/constant/color_constant.dart';
 import '../constant/constant_list/allergies_list.dart';
 import '../constant/constant_list/list_constant.dart';
@@ -46,8 +47,8 @@ class _HomePageState extends State<HomePage> {
                     Stack(
                       children: [
                         Container(
-                          height: 56,
-                          width: 56,
+                          height: 56.h,
+                          width: 56.w,
                           decoration: const BoxDecoration(
                             boxShadow: [
                               BoxShadow(
@@ -80,162 +81,178 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 20.h,
               ),
-              Stack(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      right: 20.w,
-                      left: 20.w,
+              AnimationLimiter(
+                child: Column(
+                  children: AnimationConfiguration.toStaggeredList(
+                    duration: const Duration(seconds:2),
+                    childAnimationBuilder: (widget) => SlideAnimation(
+                      verticalOffset: MediaQuery.of(context).size.width / 2,
+                      child: FadeInAnimation(child: widget),
                     ),
-                    child: Container(
-                      height: 200.h,
-                      width: 350.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.r),
-                        color: kWhiteColor,
-                      ),
+                    children: [  AnimationLimiter(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: 20.h,
-                              left: 20.w,
-                              right: 20.w,
-                            ),
-                            child: Text(
-                              nextAppointment,
-                              style: TextStyle(
-                                fontSize: 15.sp,
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w600,
-                                color: Colors.teal,
-                              ),
-                            ),
+                        children: AnimationConfiguration.toStaggeredList(
+                          duration: const Duration(seconds:2),
+                          childAnimationBuilder: (widget) => SlideAnimation(
+                            verticalOffset: MediaQuery.of(context).size.width / 2,
+                            child: FadeInAnimation(child: widget),
                           ),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: 20.w,
-                              right: 20.w,
-                            ),
-                            child: Text(
-                              date1,
-                              style: TextStyle(
-                                fontSize: 21.sp,
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w600,
-                                color: kBlackColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: 20.w,
-                              right: 20.w,
-                            ),
-                            child: RichText(
-                              text: TextSpan(
-                                style: const TextStyle(color: kBlackColor),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                      text: "➜",
-                                      style: TextStyle(
-                                        color: kRedColor,
-                                        fontSize: 15.sp,
-                                        fontFamily: "Montserrat",
-                                      )),
-                                  TextSpan(
-                                    text: time1,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w800,
-                                      fontSize: 13.sp,
-                                      color: kBlackColor,
-                                      fontFamily: "Montserrat",
-                                    ),
+                          children: [ Stack(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  right: 20.w,
+                                  left: 20.w,
+                                ),
+                                child: Container(
+                                  height: 200.h,
+                                  width: 350.w,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.r),
+                                    color: kWhiteColor,
                                   ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          Container(
-                            width: 350.w,
-                            height: 70.h,
-                            decoration: BoxDecoration(
-                              color: kRedColor,
-                              borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(30.r),
-                                bottomLeft: Radius.circular(30.r),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                top: 18.h,
-                                left: 20.w,
-                                right: 20.w,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    doc1,
-                                    style: TextStyle(
-                                      fontSize: 15.sp,
-                                      fontFamily: "Montserrat",
-                                      fontWeight: FontWeight.w600,
-                                      color: kWhiteColor,
-                                    ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          top: 20.h,
+                                          left: 20.w,
+                                          right: 20.w,
+                                        ),
+                                        child: Text(
+                                          nextAppointment,
+                                          style: TextStyle(
+                                            fontSize: 15.sp,
+                                            fontFamily: "Montserrat",
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.teal,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 20.h,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          left: 20.w,
+                                          right: 20.w,
+                                        ),
+                                        child: Text(
+                                          date1,
+                                          style: TextStyle(
+                                            fontSize: 21.sp,
+                                            fontFamily: "Montserrat",
+                                            fontWeight: FontWeight.w600,
+                                            color: kBlackColor,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          left: 20.w,
+                                          right: 20.w,
+                                        ),
+                                        child: RichText(
+                                          text: TextSpan(
+                                            style: const TextStyle(color: kBlackColor),
+                                            children: <TextSpan>[
+                                              TextSpan(
+                                                  text: "➜",
+                                                  style: TextStyle(
+                                                    color: kRedColor,
+                                                    fontSize: 15.sp,
+                                                    fontFamily: "Montserrat",
+                                                  )),
+                                              TextSpan(
+                                                text: time1,
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w800,
+                                                  fontSize: 13.sp,
+                                                  color: kBlackColor,
+                                                  fontFamily: "Montserrat",
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 20.h,
+                                      ),
+                                      Container(
+                                        width: 350.w,
+                                        height: 70.h,
+                                        decoration: BoxDecoration(
+                                          color: kRedColor,
+                                          borderRadius: BorderRadius.only(
+                                            bottomRight: Radius.circular(30.r),
+                                            bottomLeft: Radius.circular(30.r),
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                            top: 18.h,
+                                            left: 20.w,
+                                            right: 20.w,
+                                          ),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                doc1,
+                                                style: TextStyle(
+                                                  fontSize: 15.sp,
+                                                  fontFamily: "Montserrat",
+                                                  fontWeight: FontWeight.w600,
+                                                  color: kWhiteColor,
+                                                ),
+                                              ),
+                                              Text(
+                                                desc1,
+                                                style: TextStyle(
+                                                  fontSize: 13.sp,
+                                                  fontFamily: "Montserrat",
+                                                  color: kWhiteColor,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    desc1,
-                                    style: TextStyle(
-                                      fontSize: 13.sp,
-                                      fontFamily: "Montserrat",
-                                      color: kWhiteColor,
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 45.h,
-                    right: 35.w,
-                    child: Container(
-                      height: 56.h,
-                      width: 56.w,
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: kWhiteColor,
-                            blurRadius: 6,
-                            blurStyle: BlurStyle.normal,
-                            offset: Offset.zero,
-                          ),
-                        ],
-                        color: kRedColor,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.arrow_forward,
-                        color: kWhiteColor,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                              Positioned(
+                                bottom: 45.h,
+                                right: 35.w,
+                                child: Container(
+                                  height: 56.h,
+                                  width: 56.w,
+                                  decoration: const BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: kWhiteColor,
+                                        blurRadius: 6,
+                                        blurStyle: BlurStyle.normal,
+                                        offset: Offset.zero,
+                                      ),
+                                    ],
+                                    color: kRedColor,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(
+                                    Icons.arrow_forward,
+                                    color: kWhiteColor,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),],),),),],),),),
               SizedBox(
                 height: 30.h,
               ),
@@ -251,52 +268,76 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: 20.h,
-                        left: 20.w,
-                        right: 20.w,
-                      ),
-                      child: Text(
-                        nearbyDoctor,
-                        style: TextStyle(
-                          fontSize: 24.sp,
-                          fontFamily: "Montserrat",
-                          fontWeight: FontWeight.w600,
-                          color: kBlackColor,
-                        ),
-                      ),
-                    ),
+                    AnimationLimiter(
+                      child: Column(
+                        children: AnimationConfiguration.toStaggeredList(
+                          duration: const Duration(seconds:2),
+                          childAnimationBuilder: (widget) => SlideAnimation(
+                            verticalOffset: MediaQuery.of(context).size.width,
+                            child: FadeInAnimation(child: widget),
+                          ),
+                          children: [    Padding(
+                            padding: EdgeInsets.only(
+                              top: 20.h,
+                              left: 20.w,
+                              right: 20.w,
+                            ),
+                            child: Text(
+                              nearbyDoctor,
+                              style: TextStyle(
+                                fontSize: 24.sp,
+                                fontFamily: "Montserrat",
+                                fontWeight: FontWeight.w600,
+                                color: kBlackColor,
+                              ),
+                            ),
+                          ),],),),),
 
                     ///============constant DoctorList=====================
                     SizedBox(
                       height: 20.h,
                     ),
-                    const ListContainer(),
+                    AnimationLimiter(
+                      child: Column(
+                        children: AnimationConfiguration.toStaggeredList(
+                          duration: const Duration(seconds:2),
+                          childAnimationBuilder: (widget) => SlideAnimation(
+                            horizontalOffset: MediaQuery.of(context).size.height,
+                            child: FadeInAnimation(child: widget),
+                          ),
+                          children: [  const ListContainer(),],),),),
                   ],
                 ),
               ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 20.w),
-                    child: Text(
-                      threadYouMight,
-                      style: TextStyle(
-                        fontSize: 24.sp,
-                        fontFamily: "Montserrat",
-                        fontWeight: FontWeight.w600,
-                        color: kBlackColor,
-                      ),
+              AnimationLimiter(
+                child: Column(
+                  children: AnimationConfiguration.toStaggeredList(
+                    duration: const Duration(seconds:2),
+                    childAnimationBuilder: (widget) => SlideAnimation(
+                      verticalOffset: MediaQuery.of(context).size.width / 2,
+                      child: FadeInAnimation(child: widget),
                     ),
-                  ),
-                  AllergiesListContainer(),
-                ],
-              )
+                    children: [ SizedBox(
+                      height: 10.h,
+                    ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 20.w),
+                            child: Text(
+                              threadYouMight,
+                              style: TextStyle(
+                                fontSize: 24.sp,
+                                fontFamily: "Montserrat",
+                                fontWeight: FontWeight.w600,
+                                color: kBlackColor,
+                              ),
+                            ),
+                          ),
+                          AllergiesListContainer(),
+                        ],
+                      )],),),),
             ],
           ),
         ),

@@ -1,119 +1,191 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_flutter_ui/constant/color_constant.dart';
 import 'Floating_screen.dart';
+import 'MAPS.dart';
 import 'Profile_screen.dart';
 import 'chat_screen.dart';
 import 'feed_Screen.dart';
 import 'home_screen.dart';
 
-class AnimatedBarExample extends StatefulWidget {
-  const AnimatedBarExample({
+class BottomNavPage extends StatefulWidget {
+  const BottomNavPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<AnimatedBarExample> createState() => _AnimatedBarExampleState();
+  State<BottomNavPage> createState() => _BottomNavPageState();
 }
 
-class _AnimatedBarExampleState extends State<AnimatedBarExample> {
+class _BottomNavPageState extends State<BottomNavPage> {
   int selectedIndex = 0;
 
   List<Widget> widgets = [
     const HomePage(),
     const FeedPage(),
-    LocationPage(),
+    const SizedBox(),
     const ChatScreen(),
     const ProfilePage(),
   ];
+  Future<bool> showExitPopup(context) async {
+    return await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: SizedBox(
+              height: 90.h,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Do you want to exit?",
+                    style: TextStyle(fontFamily: "Montserrat", fontSize: 18.sp, fontWeight: FontWeight.w800, color: kBlackColor),
+                  ),
+                  SizedBox(height: 20.h),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            print(
+                              'yes selected',
+                            );
+                            exit(0);
+                          },
+                          style: ElevatedButton.styleFrom(primary: kRedColor),
+                          child: Text(
+                            "Yes",
+                            style: TextStyle(fontFamily: "Montserrat", fontSize: 15.sp, fontWeight: FontWeight.w800, color: kWhiteColor),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 15.w),
+                      Expanded(
+                          child: ElevatedButton(
+                        onPressed: () {
+                          print('no selected');
+                          Navigator.of(context).pop();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: kWhiteColor,
+                        ),
+                        child: Text(
+                          "No",
+                          style: TextStyle(fontFamily: "Montserrat", fontSize: 15.sp, fontWeight: FontWeight.w800, color: kBlackColor),
+                        ),
+                      ))
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(
-        index: selectedIndex,
-        children: widgets,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        selectedIconTheme: const IconThemeData(color: kRedColor),
-        selectedLabelStyle: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 6,
+    return WillPopScope(
+      onWillPop: () => showExitPopup(context),
+      child: Scaffold(
+        body: IndexedStack(
+          index: selectedIndex,
+          children: widgets,
         ),
-        showSelectedLabels: true,
-        showUnselectedLabels: false,
-        items: <BottomNavigationBarItem>[
-          const BottomNavigationBarItem(
-            activeIcon: Icon(Icons.home, size: 30),
-            icon: Icon(
-              Icons.home_outlined,
-              size: 28,
-            ),
-            label: '🔴',
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          type: BottomNavigationBarType.fixed,
+          selectedIconTheme: const IconThemeData(color: kRedColor),
+          selectedLabelStyle: const TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 6,
           ),
-          const BottomNavigationBarItem(
-            activeIcon: Icon(Icons.feed, size: 30),
-            icon: Icon(
-              Icons.feed_outlined,
-              size: 28,
+          showSelectedLabels: true,
+          showUnselectedLabels: false,
+          items: <BottomNavigationBarItem>[
+            const BottomNavigationBarItem(
+              activeIcon: Icon(Icons.home, size: 30),
+              icon: Icon(
+                Icons.home_outlined,
+                size: 28,
+              ),
+              label: '🔴',
             ),
-            label: '🔴',
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              height: 56,
-              width: 56,
-              decoration: const BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: kRedColor,
-                    blurRadius: 5,
-                    offset: Offset.zero, // changes position of shadow
+            const BottomNavigationBarItem(
+              activeIcon: Icon(Icons.feed, size: 30),
+              icon: Icon(
+                Icons.feed_outlined,
+                size: 28,
+              ),
+              label: '🔴',
+            ),
+            BottomNavigationBarItem(
+              icon: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MapScreen(),
+                    ),
+                  );
+                },
+                child: Container(
+                  height: 56,
+                  width: 56,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: kRedColor,
+                        blurRadius: 5,
+                        offset: Offset.zero, // changes position of shadow
+                      ),
+                    ],
+                    color: kWhiteColor,
+                    shape: BoxShape.circle,
                   ),
-                ],
-                color: kWhiteColor,
-                shape: BoxShape.circle,
+                  padding: const EdgeInsets.all(10),
+                  child: const Icon(
+                    Icons.add,
+                    color: kRedColor,
+                  ),
+                ),
               ),
-              padding: const EdgeInsets.all(10),
-              child: const Icon(
-                Icons.add,
-                color: kRedColor,
-              ),
+              label: '',
             ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            activeIcon: const Icon(Icons.chat_bubble, size: 30),
-            icon: Container(
-              padding: const EdgeInsets.all(0.8),
-              child: const Icon(
-                Icons.chat_bubble_outline_rounded,
-                size: 28,
+            BottomNavigationBarItem(
+              activeIcon: const Icon(Icons.chat_bubble, size: 30),
+              icon: Container(
+                padding: const EdgeInsets.all(0.8),
+                child: const Icon(
+                  Icons.chat_bubble_outline_rounded,
+                  size: 28,
+                ),
+                // ),
               ),
-              // ),
+              label: '🔴',
             ),
-            label: '🔴',
-          ),
-          BottomNavigationBarItem(
-            activeIcon: const Icon(Icons.account_circle, size: 30),
-            icon: Container(
-              padding: const EdgeInsets.all(0.8),
-              child: const Icon(
-                Icons.account_circle_outlined,
-                size: 28,
+            BottomNavigationBarItem(
+              activeIcon: const Icon(Icons.account_circle, size: 30),
+              icon: Container(
+                padding: const EdgeInsets.all(0.8),
+                child: const Icon(
+                  Icons.account_circle_outlined,
+                  size: 28,
+                ),
               ),
+              label: '🔴',
             ),
-            label: '🔴',
-          ),
-        ],
-        onTap: (index) {
-          setState(() {
-            selectedIndex = index;
-          });
-          debugPrint('current index is $index');
-        },
-        currentIndex: selectedIndex,
+          ],
+          onTap: (index) {
+            setState(() {
+              selectedIndex = index;
+            });
+            debugPrint('current index is $index');
+          },
+          currentIndex: selectedIndex,
+        ),
       ),
     );
   }

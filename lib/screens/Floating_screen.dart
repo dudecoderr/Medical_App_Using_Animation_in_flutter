@@ -71,38 +71,6 @@ class LocationPageState extends State<LocationPage> {
     );
   }
 
-  // Widget _zoomminusfunction() {
-  //   return Padding(
-  //     padding: const EdgeInsets.only(top: 95,left: 20),
-  //     child: IconButton(
-  //         icon: const Icon(FontAwesomeIcons.searchMinus, color: kGreyBlueColor),
-  //         onPressed: () {
-  //           zoomVal--;
-  //           _minus(zoomVal);
-  //         }),
-  //   );
-  // }
-  // Widget _zoomplusfunction() {
-  //   return Padding(
-  //     padding: const EdgeInsets.only(top: 95,left: 320),
-  //     child: IconButton(
-  //         icon: const Icon(FontAwesomeIcons.searchPlus, color: kGreyBlueColor),
-  //         onPressed: () {
-  //           zoomVal++;
-  //           _plus(zoomVal);
-  //         }),
-  //   );
-  // }
-  // Future<void> _minus(double zoomVal) async {
-  //   final GoogleMapController controller = await _controller.future;
-  //   controller.animateCamera(CameraUpdate.newCameraPosition(
-  //       CameraPosition(target: LatLng(18.922370, 72.834504), zoom: zoomVal)));
-  // }
-  // Future<void> _plus(double zoomVal) async {
-  //   final GoogleMapController controller = await _controller.future;
-  //   controller.animateCamera(CameraUpdate.newCameraPosition(
-  //       CameraPosition(target: LatLng(18.922370, 72.834504), zoom: zoomVal)));
-  // }
   Widget _buildContainer() {
     return Container(
       child: Align(
@@ -206,8 +174,8 @@ class LocationPageState extends State<LocationPage> {
               ),
             ],
           ),
-        ),
-        SizedBox(height: 5.h),
+          ),
+          SizedBox(height: 5.h),
         InkWell(
           onTap: () {
             showModalBottomSheet<void>(
@@ -322,7 +290,6 @@ Marker chateauResiMarker = Marker(
     BitmapDescriptor.hueRed,
   ),
 );
-//New York Marker
 Marker parMarker = Marker(
   markerId: MarkerId("park"),
   position: LatLng(19.099074, 72.826454),
@@ -339,3 +306,4 @@ Marker clubHallaMarker = Marker(
     BitmapDescriptor.hueRed,
   ),
 );
+

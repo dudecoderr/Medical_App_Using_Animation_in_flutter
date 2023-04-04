@@ -9,3 +9,5 @@ const String img6 =  "assets/doctor6.png";
 const String img7 =  "assets/doctor7.png";
 const String img8 =  "assets/doctor8.png";
 const String img9 =  "assets/doctor9.png";
+const String img10 =  "assets/map4.png";
+const String img11 =  "assets/profile.png";

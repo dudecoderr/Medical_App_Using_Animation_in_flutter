@@ -1,6 +1,7 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../constant/color_constant.dart';
 import '../constant/constant_list/doctor_list.dart';
 import '../constant/string_constant.dart';
@@ -21,7 +22,7 @@ class _LiveButtonBottomSheetState extends State<LiveButtonBottomSheet> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        height:650.h,
+        height: 650.h,
         decoration: BoxDecoration(
           color: Colors.grey.shade100,
           borderRadius: BorderRadius.only(
@@ -86,46 +87,58 @@ class _LiveButtonBottomSheetState extends State<LiveButtonBottomSheet> {
               height: 20.h,
             ),
             DoctorListContainer(),
-            DefaultTabController(
-              length: 6,
+            AnimationLimiter(
               child: Column(
-                children: <Widget>[
-                  ButtonsTabBar(
-                    backgroundColor: kWhiteColor,
-                    unselectedBackgroundColor: kWhiteColor,
-                    unselectedLabelStyle: TextStyle(
-                      color: kGreyColor,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: "Montserrat",
-                    ),
-                    labelStyle: TextStyle(
-                      color: kRedColor,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: "Montserrat",
-                    ),
-                    tabs: const [
-                      Tab(
-                        text: all,
-                      ),
-
-                      Tab(
-                        text: allergies,
-                      ),
-                      Tab(
-                        text: cardiology,
-                      ),
-                      Tab(
-                        text: covid,
-                      ),
-                      Tab(
-                        text: depression,
-                      ),
-                      Tab(
-                        text: accidentsInjuries,
-                      ),
-                    ],
+                children: AnimationConfiguration.toStaggeredList(
+                  duration: const Duration(seconds: 3),
+                  childAnimationBuilder: (widget) => SlideAnimation(
+                    verticalOffset: MediaQuery.of(context).size.width / 2,
+                    child: FadeInAnimation(child: widget),
                   ),
-                ],
+                  children: [
+                    DefaultTabController(
+                      length: 6,
+                      child: Column(
+                        children: <Widget>[
+                          ButtonsTabBar(
+                            backgroundColor: kWhiteColor,
+                            unselectedBackgroundColor: kWhiteColor,
+                            unselectedLabelStyle: TextStyle(
+                              color: kGreyColor,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: "Montserrat",
+                            ),
+                            labelStyle: TextStyle(
+                              color: kRedColor,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: "Montserrat",
+                            ),
+                            tabs: const [
+                              Tab(
+                                text: all,
+                              ),
+                              Tab(
+                                text: allergies,
+                              ),
+                              Tab(
+                                text: cardiology,
+                              ),
+                              Tab(
+                                text: covid,
+                              ),
+                              Tab(
+                                text: depression,
+                              ),
+                              Tab(
+                                text: accidentsInjuries,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

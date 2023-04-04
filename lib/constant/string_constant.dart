@@ -57,7 +57,7 @@ const String time2 = " 11.59";
 ///==================profile page ======================
 
 const String profile = "Profile";
-const String doc7 = "Vicky Pradana Tasu";
+const String patient = "Vicky Pradana Tasu";
 const String year1 = "29 years old";
 const String ago1 = "prdvicky • 2h ago";
 const String  weight = " Weight";
@@ -68,18 +68,15 @@ const String  yourRecentThread = "Your Recent Thread";
 const String  accidentsInjuries = "Accidents and Injuries";
 const String  handWrist = "Hand/Wrist/Forearm injury that won't go away";
 
-
 ///=================search page ======================
 
-const String bookingOverview = "Booking Overview";
+const String bookingOverview = "Booking \nOverview";
 const String cardiology = "Cardiology";
 const String dentistry = "Dentistry";
 const String dermatology = "Dermatology";
 const String available1 = "4.9 • Available Mon - wed, 11.00 - 14.00";
 const String available2 = "4.8 • Available Mon - wed, 9.00 - 15.00";
 const String available3 = "4.7 . Available Tue - Thu, 10.00 - 14.00";
-
-
 
 ///=================search page ======================
 

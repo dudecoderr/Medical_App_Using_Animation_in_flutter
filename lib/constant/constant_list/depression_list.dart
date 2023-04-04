@@ -1,6 +1,7 @@
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:medical_flutter_ui/constant/string_constant.dart';
 import '../color_constant.dart';
 
@@ -11,55 +12,63 @@ class DepressionListContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: SizedBox(
-        height:380.h,
-        child: ListView.builder(physics:  const AlwaysScrollableScrollPhysics(),
-          itemCount: 1,
-          itemBuilder: (BuildContext context, int index) {
-            return Column(
-              children: [
-                SizedBox(
-                  height: 10.h,
-                ),
-                const DepressionList(
-                  titles: que12,
-                  subtitle: hour1,
-                  desc1: replies1,
-                  desc: "11",
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                const DepressionList(
-                  desc: "9",
-                  titles: que9,
-                  desc1: replies2,
-                  subtitle: hour2,
-                ),  SizedBox(
-                  height: 10.h,
-                ),
-                const DepressionList(
-                  desc: "8",
-                  titles: que10,
-                  desc1: replies1,
-                  subtitle: hour1,
-                ),  SizedBox(
-                  height: 10.h,
-                ),
-                const DepressionList(
-                  desc: "15",
-                  titles: que11,
-                  desc1: replies2,
-                  subtitle: hour2,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-              ],
-            );
-          },
-        ),
-      ),
+      child:   AnimationLimiter(
+        child: Column(
+          children: AnimationConfiguration.toStaggeredList(
+            duration: const Duration(seconds:2),
+            childAnimationBuilder: (widget) => SlideAnimation(
+              verticalOffset: MediaQuery.of(context).size.width / 2,
+              child: FadeInAnimation(child: widget),
+            ),
+            children: [ SizedBox(
+              height:380.h,
+              child: ListView.builder(physics:  const AlwaysScrollableScrollPhysics(),
+                itemCount: 1,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      const DepressionList(
+                        titles: que12,
+                        subtitle: hour1,
+                        desc1: replies1,
+                        desc: "11",
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      const DepressionList(
+                        desc: "9",
+                        titles: que9,
+                        desc1: replies2,
+                        subtitle: hour2,
+                      ),  SizedBox(
+                        height: 10.h,
+                      ),
+                      const DepressionList(
+                        desc: "8",
+                        titles: que10,
+                        desc1: replies1,
+                        subtitle: hour1,
+                      ),  SizedBox(
+                        height: 10.h,
+                      ),
+                      const DepressionList(
+                        desc: "15",
+                        titles: que11,
+                        desc1: replies2,
+                        subtitle: hour2,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),],),),),
     );
   }
 }
@@ -85,7 +94,7 @@ class DepressionList extends StatelessWidget {
       padding: EdgeInsets.only(right: 20.w, left: 20.w, top: 20.h),
       width: 350.w,
       height: 170.h,
-      decoration: BoxDecoration(color: kWhiteColor, borderRadius: BorderRadius.circular(30)),
+      decoration: BoxDecoration(color: kWhiteColor, borderRadius: BorderRadius.circular(30.r)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -132,7 +141,7 @@ class DepressionList extends StatelessWidget {
                 iconSize: 25.h,
                 iconDisabledColor: kGreyColor,
                 iconColor: kRedColor,
-                valueChanged: (_isFavorite) {},
+                valueChanged: (isFavorite) {},
               ),
               SizedBox(
                 width: 8.w,

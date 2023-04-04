@@ -45,9 +45,22 @@ dependencies:
   font_awesome_flutter: ^10.2.1
   google_maps_flutter: ^2.2.3
 
+  maps_launcher: ^2.2.0
+  geocoding: ^2.1.0
  ##=====================flutter_rating_bar ===============##
   flutter_rating_bar: ^4.0.1
 
+  ##=====================calendar_timeline ===============##
+  calendar_timeline: ^1.0.5
+  weekly_date_picker: ^1.3.0
+  time_range: ^1.1.0
+
+##===========================circular_progress_stack===========##
+  circular_progress_stack: ^0.0.3
+
+  ##===================flutter_staggered_animations===========##
+  flutter_staggered_animations: ^1.1.1
+  phlox_animations: ^2.1.1
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -108,7 +121,7 @@ flutter:
       fonts:
         - asset: fonts/Montserrat/static/Montserrat-Light.ttf
         - asset: fonts/Montserrat/static/Montserrat-Bold.ttf
-          weight: 700
+
 
   #
   # For details regarding fonts from package dependencies,

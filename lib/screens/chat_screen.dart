@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../constant/color_constant.dart';
 import '../constant/constant_list/chat_constant.dart';
 import '../constant/string_constant.dart';
@@ -92,7 +93,16 @@ class _ChatScreenState extends State<ChatScreen> {
               SizedBox(
                 height: 20.h,
               ),
-              const ChatConstantScreen(),
+              AnimationLimiter(
+                child: Column(
+                  children: AnimationConfiguration.toStaggeredList(
+                    duration: const Duration(seconds:2),
+                    childAnimationBuilder: (widget) => SlideAnimation(
+                      verticalOffset: MediaQuery.of(context).size.width / 2,
+                      child: FadeInAnimation(child: widget),
+                    ),
+                    children: [ const ChatConstantScreen(),],),),),
+              // const ChatConstantScreen(),
             ],
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:medical_flutter_ui/constant/string_constant.dart';
 import '../color_constant.dart';
 
@@ -10,58 +11,66 @@ class CardiologyListContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: SizedBox(
-        height: 400.h,
-        child: ListView.builder(
-          physics: const AlwaysScrollableScrollPhysics(),
-          itemCount: 1,
-          itemBuilder: (BuildContext context, int index) {
-            return Column(
-              children: [
-                SizedBox(
-                  height: 10.h,
-                ),
-                const CardiologyList(
-                  titles: que5,
-                  subtitle: hour1,
-                  desc1: replies1,
-                  desc: "11",
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                const CardiologyList(
-                  desc: "9",
-                  titles: que6,
-                  desc1: replies2,
-                  subtitle: hour2,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                const CardiologyList(
-                  desc: "9",
-                  titles: que7,
-                  desc1: replies2,
-                  subtitle: hour2,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                const CardiologyList(
-                  desc: "9",
-                  titles: que8,
-                  desc1: replies1,
-                  subtitle: hour2,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-              ],
-            );
-          },
-        ),
-      ),
+      child:  AnimationLimiter(
+        child: Column(
+          children: AnimationConfiguration.toStaggeredList(
+            duration: const Duration(seconds:2),
+            childAnimationBuilder: (widget) => SlideAnimation(
+              verticalOffset: MediaQuery.of(context).size.width / 2,
+              child: FadeInAnimation(child: widget),
+            ),
+            children: [  SizedBox(
+              height: 410.h,
+              child: ListView.builder(
+                physics: const AlwaysScrollableScrollPhysics(),
+                itemCount: 1,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      const CardiologyList(
+                        titles: que5,
+                        subtitle: hour1,
+                        desc1: replies1,
+                        desc: "11",
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      const CardiologyList(
+                        desc: "9",
+                        titles: que6,
+                        desc1: replies2,
+                        subtitle: hour2,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      const CardiologyList(
+                        desc: "9",
+                        titles: que7,
+                        desc1: replies2,
+                        subtitle: hour2,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      const CardiologyList(
+                        desc: "9",
+                        titles: que8,
+                        desc1: replies1,
+                        subtitle: hour2,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),],),),),
     );
   }
 }

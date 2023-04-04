@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:medical_flutter_ui/constant/image_constant.dart';
 import 'package:medical_flutter_ui/constant/string_constant.dart';
 
@@ -16,17 +17,17 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-   return Container(
+    return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(begin: Alignment.centerLeft, tileMode: TileMode.mirror, end: Alignment.topRight, colors: [
-            Color(0XFFfafcfe),
-            Color(0XFFd9e9ea),
-            Color(0XFFfafcfe),
-            Color(0XFFfafcfe),
-            Color(0XFFd9e9ea),
-            Color(0XFFf6cac0),
-            Color(0XFFf6ccc1),
-          ])),
+        Color(0XFFfafcfe),
+        Color(0XFFd9e9ea),
+        Color(0XFFfafcfe),
+        Color(0XFFfafcfe),
+        Color(0XFFd9e9ea),
+        Color(0XFFf6cac0),
+        Color(0XFFf6ccc1),
+      ])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
@@ -60,20 +61,38 @@ class _ProfilePageState extends State<ProfilePage> {
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
-                        Icons.settings_outlined ,
+                        Icons.settings_outlined,
                         color: kRedColor,
                         size: 25.h,
                       ),
                     ),
-
-
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Image.asset(img1,height:  140.h,width: 150.w,),
+              AnimationLimiter(
+                child: Column(
+                  children: AnimationConfiguration.toStaggeredList(
+                    duration: const Duration(seconds:5),
+                    childAnimationBuilder: (widget) => SlideAnimation(
+                      verticalOffset: MediaQuery.of(context).size.width,
+                      child: FadeInAnimation(child: widget),
+                    ),
+                    children: [  SizedBox(
+                      height: 20.h,
+                    ),
+                      Column(
+                        children: [
+                          Image.asset(img1, height: 150.h, width: 120.w),
+                          Text(
+                            patient,
+                            style: TextStyle(fontWeight: FontWeight.w900, fontFamily: "Montserrat", color: kBlackColor, fontSize: 15.sp),
+                          ),
+                          Text(
+                            year1,
+                            style: TextStyle(fontWeight: FontWeight.w700, fontFamily: "Montserrat", color: kGreyColor, fontSize: 13.sp),
+                          ),
+                        ],
+                      ),],),),),
               SizedBox(
                 height: 20.h,
               ),
@@ -83,65 +102,65 @@ class _ProfilePageState extends State<ProfilePage> {
                   left: 20.w,
                 ),
                 child: Row(
-
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(height: 80.h,width: 140.w,decoration: BoxDecoration( color: kWhiteColor,borderRadius: BorderRadius.circular(20.r)),child: Column(
-                      children: [
-                        RichText(
-                          text: TextSpan(
-                            style: const TextStyle(color: kBlackColor),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: "•",
-                                  style: TextStyle(
-                                    color: kTealColor,
-                                    fontSize: 28.sp,
-                                    fontFamily: "Montserrat",
-                                  )),
-                              TextSpan(
-                                text: weight,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 13.sp,
-                                  color: kBlackColor,
-                                  fontFamily: "Montserrat",
+                    Container(
+                        padding: EdgeInsets.only(right: 20.w, left: 20.w, top: 20.h),
+                        height: 80.h,
+                        width: 140.w,
+                        decoration: BoxDecoration(color: kWhiteColor, borderRadius: BorderRadius.circular(20.r)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: kTealColor,
+                                  radius: 5,
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(kg,style: TextStyle(fontWeight: FontWeight.w700,color: kBlackColor,fontSize:25.sp),)
-                      ],
-                    )),
-                    Container(height: 80.h,width: 140.w,decoration: BoxDecoration( color: kWhiteColor,borderRadius: BorderRadius.circular(20.r)),child: Column(
-                      children: [
-                        RichText(
-                          text: TextSpan(
-                            style: const TextStyle(color: kBlackColor),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: "•",
-                                  style: TextStyle(
-                                    color: kTealColor,
-                                    fontSize: 28.sp,
-                                    fontFamily: "Montserrat",
-                                  )),
-                              TextSpan(
-                                text: height,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 13.sp,
-                                  color: kBlackColor,
-                                  fontFamily: "Montserrat",
+                                SizedBox(
+                                  width: 3.w,
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(cm,style: TextStyle(fontWeight: FontWeight.w700,color: kBlackColor,fontSize:25.sp),)
-                      ],
-                    )),
+                                Text(
+                                  weight,
+                                  style: TextStyle(fontWeight: FontWeight.w700, fontFamily: "Montserrat", color: kBlackColor, fontSize: 13.sp),
+                                )
+                              ],
+                            ),
+                            Text(
+                              kg,
+                              style: TextStyle(fontWeight: FontWeight.w700, fontFamily: "Montserrat", color: kBlackColor, fontSize: 25.sp),
+                            )
+                          ],
+                        )),
+                    Container(
+                        padding: EdgeInsets.only(right: 20.w, left: 20.w, top: 20.h),
+                        height: 80.h,
+                        width: 140.w,
+                        decoration: BoxDecoration(color: kWhiteColor, borderRadius: BorderRadius.circular(20.r)),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: kTealColor,
+                                  radius: 5,
+                                ),
+                                SizedBox(
+                                  width: 3.w,
+                                ),
+                                Text(
+                                  height,
+                                  style: TextStyle(fontWeight: FontWeight.w700, fontFamily: "Montserrat", color: kBlackColor, fontSize: 13.sp),
+                                )
+                              ],
+                            ),
+                            Text(
+                              cm,
+                              style: TextStyle(fontWeight: FontWeight.w700, fontFamily: "Montserrat", color: kBlackColor, fontSize: 25.sp),
+                            )
+                          ],
+                        )),
                   ],
                 ),
               ),
@@ -176,11 +195,12 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                     ),
+
                     ///============constant ProfileList=====================
                     SizedBox(
                       height: 10.h,
                     ),
-                    ProfileListContainer(),
+                    const ProfileListContainer(),
                   ],
                 ),
               )

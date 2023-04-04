@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:medical_flutter_ui/constant/color_constant.dart';
+import 'package:medical_flutter_ui/screens/MAPS.dart';
 import 'package:medical_flutter_ui/screens/bottom_nav.dart';
-import 'package:medical_flutter_ui/screens/home_screen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.grey,
             fontFamily: 'montserrat',
           ),
-          home: AnimatedBarExample(),
+          home: const BottomNavPage(),
         );
       },
     );

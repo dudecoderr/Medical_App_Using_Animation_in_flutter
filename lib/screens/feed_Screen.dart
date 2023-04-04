@@ -20,7 +20,7 @@ class FeedPage extends StatefulWidget {
 class _FeedPageState extends State<FeedPage> {
   int timeIndexSelected = 1;
   int currentPage = 0;
-  late TabController _tabController;
+
   final List<String> time = [all, general, covid, allergies, cardiology, accidentsInjuries];
 
   @override
@@ -100,7 +100,7 @@ class _FeedPageState extends State<FeedPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
               SizedBox(
                 width: 500,
                 height: 500,
@@ -111,12 +111,12 @@ class _FeedPageState extends State<FeedPage> {
                       ButtonsTabBar(
                         backgroundColor: kWhiteColor,
                         unselectedBackgroundColor: kWhiteColor,
-                        unselectedLabelStyle: TextStyle(
+                        unselectedLabelStyle: const TextStyle(
                           color: kGreyColor,
                           fontWeight: FontWeight.w700,
                           fontFamily: "Montserrat",
                         ),
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: kRedColor,
                           fontWeight: FontWeight.w700,
                           fontFamily: "Montserrat",
@@ -145,8 +145,8 @@ class _FeedPageState extends State<FeedPage> {
                           ),
                         ],
                       ),
-                      const Expanded(
-                        child: TabBarView(
+                       Expanded(
+                        child: const TabBarView(
                           children: <Widget>[
                             Center(
                               child: AllListContainer(),
