@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -94,15 +96,22 @@ class _ChatScreenState extends State<ChatScreen> {
                 height: 20.h,
               ),
               AnimationLimiter(
-                child: Column(
-                  children: AnimationConfiguration.toStaggeredList(
-                    duration: const Duration(seconds:2),
-                    childAnimationBuilder: (widget) => SlideAnimation(
-                      verticalOffset: MediaQuery.of(context).size.width / 2,
-                      child: FadeInAnimation(child: widget),
+                child: AnimationConfiguration.staggeredList(
+                  position: Random().nextInt(10),
+                  delay:const Duration(seconds: 4),
+                  duration: const Duration(seconds: 4),
+                  child: SlideAnimation(
+                    duration:const Duration(seconds: 4),
+                    delay: const Duration(seconds: 4),
+                    verticalOffset: MediaQuery.of(context).size.width / 2,
+                    child: const FadeInAnimation(
+                      delay: Duration(seconds: 4),
+                      duration: Duration(seconds: 4),
+                      child: ChatConstantScreen(),
                     ),
-                    children: [ const ChatConstantScreen(),],),),),
-              // const ChatConstantScreen(),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

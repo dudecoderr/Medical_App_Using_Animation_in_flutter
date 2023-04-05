@@ -1,15 +1,45 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_flutter_ui/constant/color_constant.dart';
-import 'Floating_screen.dart';
 import 'MAPS.dart';
 import 'Profile_screen.dart';
 import 'chat_screen.dart';
 import 'feed_Screen.dart';
 import 'home_screen.dart';
 
+class StaggeredAnimation {
+  StaggeredAnimation({
+    required this.controller,
+    required this.duration,
+    required this.widget,
+  })   : opacity = Tween<double>(begin: 0.0, end: 1.0).animate(
+    CurvedAnimation(
+      parent: controller,
+      curve: const Interval(
+        0.0,
+        0.500,
+        curve: Curves.ease,
+      ),
+    ),
+  ),
+        translateY = Tween<double>(begin: 50.0, end: 0.0).animate(
+          CurvedAnimation(
+            parent: controller,
+            curve: const Interval(
+              0.500,
+              1.000,
+              curve: Curves.ease,
+            ),
+          ),
+        );
+
+  final AnimationController controller;
+  final Duration duration;
+  final Widget widget;
+  final Animation<double> opacity;
+  final Animation<double> translateY;
+}
 class BottomNavPage extends StatefulWidget {
   const BottomNavPage({
     Key? key,
@@ -19,8 +49,9 @@ class BottomNavPage extends StatefulWidget {
   State<BottomNavPage> createState() => _BottomNavPageState();
 }
 
-class _BottomNavPageState extends State<BottomNavPage> {
-  int selectedIndex = 0;
+class _BottomNavPageState extends State<BottomNavPage>   with TickerProviderStateMixin {
+
+  int _selectedIndex = 0;
 
   List<Widget> widgets = [
     const HomePage(),
@@ -49,12 +80,9 @@ class _BottomNavPageState extends State<BottomNavPage> {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
-                            print(
-                              'yes selected',
-                            );
                             exit(0);
                           },
-                          style: ElevatedButton.styleFrom(primary: kRedColor),
+                          style: ElevatedButton.styleFrom(backgroundColor:  kRedColor),
                           child: Text(
                             "Yes",
                             style: TextStyle(fontFamily: "Montserrat", fontSize: 15.sp, fontWeight: FontWeight.w800, color: kWhiteColor),
@@ -65,11 +93,10 @@ class _BottomNavPageState extends State<BottomNavPage> {
                       Expanded(
                           child: ElevatedButton(
                         onPressed: () {
-                          print('no selected');
                           Navigator.of(context).pop();
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: kWhiteColor,
+                          backgroundColor: kWhiteColor,
                         ),
                         child: Text(
                           "No",
@@ -90,8 +117,9 @@ class _BottomNavPageState extends State<BottomNavPage> {
     return WillPopScope(
       onWillPop: () => showExitPopup(context),
       child: Scaffold(
-        body: IndexedStack(
-          index: selectedIndex,
+        body:
+        IndexedStack(
+          index: _selectedIndex,
           children: widgets,
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -180,11 +208,11 @@ class _BottomNavPageState extends State<BottomNavPage> {
           ],
           onTap: (index) {
             setState(() {
-              selectedIndex = index;
+              _selectedIndex = index;
             });
             debugPrint('current index is $index');
           },
-          currentIndex: selectedIndex,
+          currentIndex: _selectedIndex,
         ),
       ),
     );

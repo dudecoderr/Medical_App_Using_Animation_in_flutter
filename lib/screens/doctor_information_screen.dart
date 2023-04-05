@@ -41,74 +41,61 @@ class _DoctorImformationPageState extends State<DoctorImformationPage> {
                     child: FadeInAnimation(child: widget),
                   ),
                   children: [
-                    AnimationLimiter(
-                      child: Column(
-                        children: AnimationConfiguration.toStaggeredList(
-                          duration: const Duration(seconds: 2),
-                          childAnimationBuilder: (widget) => SlideAnimation(
-                            horizontalOffset: MediaQuery.of(context).size.height / 2,
-                            child: FadeInAnimation(child: widget),
+                    Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: kTealColor,
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          children: [
-                            Stack(
+                          height: 200.h,
+                          width: 350.w,
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 45.h, left: 20.w),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: kTealColor,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  height: 200.h,
-                                  width: 350.w,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 45.h, left: 20.w),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "dr.Theresa \nWebb",
-                                          style: TextStyle(fontFamily: "Montserrat", fontSize: 32.sp, fontWeight: FontWeight.w700, color: kWhiteColor),
-                                        ),
-                                        SizedBox(
-                                          height: 10.h,
-                                        ),
-                                        Text(
-                                          dermatology,
-                                          style: TextStyle(fontFamily: "Montserrat", fontSize: 15.sp, fontWeight: FontWeight.w500, color: kWhiteColor),
-                                        ),
-                                        SizedBox(
-                                          height: 10.h,
-                                        ),
-                                        RatingBar.builder(
-                                          itemSize: 23,
-                                          initialRating: 3,
-                                          unratedColor: Colors.white54,
-                                          minRating: 1,
-                                          itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                                          direction: Axis.horizontal,
-                                          allowHalfRating: true,
-                                          itemCount: 5,
-                                          itemBuilder: (context, _) => Icon(
-                                            Icons.star,
-                                            color: kWhiteColor,
-                                          ),
-                                          onRatingUpdate: (rating) {
-                                            print(rating);
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                Text(
+                                  "dr.Theresa \nWebb",
+                                  style: TextStyle(fontFamily: "Montserrat", fontSize: 32.sp, fontWeight: FontWeight.w700, color: kWhiteColor),
                                 ),
-                                Positioned(
-                                  top: 20.h,
-                                  left: 170.w,
-                                  child: Image.asset(img9, width: 200, height: 180.h),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                Text(
+                                  dermatology,
+                                  style: TextStyle(fontFamily: "Montserrat", fontSize: 15.sp, fontWeight: FontWeight.w500, color: kWhiteColor),
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                RatingBar.builder(
+                                  itemSize: 23,
+                                  initialRating: 3,
+                                  unratedColor: Colors.white54,
+                                  minRating: 1,
+                                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                  direction: Axis.horizontal,
+                                  allowHalfRating: true,
+                                  itemCount: 5,
+                                  itemBuilder: (context, _) => Icon(
+                                    Icons.star,
+                                    color: kWhiteColor,
+                                  ),
+                                  onRatingUpdate: (rating) {
+                                    print(rating);
+                                  },
                                 ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
+                        Positioned(
+                          top: 20.h,
+                          left: 170.w,
+                          child: Image.asset(img9, width: 200, height: 180.h),
+                        ),
+                      ],
                     ),
                   ],
                 ),

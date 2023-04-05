@@ -72,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
               AnimationLimiter(
                 child: Column(
                   children: AnimationConfiguration.toStaggeredList(
-                    duration: const Duration(seconds:5),
+                    duration: const Duration(seconds:5),         delay: Duration(seconds: 4),
                     childAnimationBuilder: (widget) => SlideAnimation(
                       verticalOffset: MediaQuery.of(context).size.width,
                       child: FadeInAnimation(child: widget),

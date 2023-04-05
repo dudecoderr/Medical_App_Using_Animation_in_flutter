@@ -34,7 +34,7 @@ class _ProcessingPaymentPageState extends State<ProcessingPaymentPage> {
           children: [
             Center(
               child: FutureBuilder(
-                future: Future.delayed(Duration(seconds: 3)), // simulate a 3-second delay
+                future: Future.delayed(const Duration(seconds: 3)), // simulate a 3-second delay
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Column(
@@ -42,11 +42,11 @@ class _ProcessingPaymentPageState extends State<ProcessingPaymentPage> {
                         Stack(
                           children: [
                             Container(
-                              margin: EdgeInsets.all(10),
+                              margin: const EdgeInsets.all(10),
                               child: AnimatedStackCircularProgressBar(
                                 size: 130,
-                                progressStrokeWidth: 5,
-                                backStrokeWidth: 5,
+                                progressStrokeWidth: 3,
+                                backStrokeWidth: 3,
                                 startAngle: 0,
                                 backColor: const Color(0xffD7DEE7),
                                 bars: [
@@ -58,25 +58,29 @@ class _ProcessingPaymentPageState extends State<ProcessingPaymentPage> {
                                 ],
                               ),
                             ),
-                            Positioned(
-                              right: 0.w,
+                            Positioned(left: 2,
+
+                              right:0.w,
                               top: 1,
                               bottom: 1,
-                              child: Container(
-                                  margin: EdgeInsets.all(10),
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: kTealColor,
-                                  ),
-                                  height: 130.h,
-                                  width: 120.w,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.more_horiz_rounded, size: 50, color: kWhiteColor),
-                                    ],
-                                  )),
+                              child: FittedBox(
+                                child: Container(
+                                    margin: const EdgeInsets.all(10),
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: kTealColor,
+                                    ),
+                                    height: 120.h,
+                                    width: 120.w,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Icon(Icons.more_horiz_rounded, size: 50.sp, color: kWhiteColor),
+                                      ],
+                                    )),
+
+                              ),
                             ),
                           ],
                         ),
@@ -103,7 +107,7 @@ class _ProcessingPaymentPageState extends State<ProcessingPaymentPage> {
                           height: 130.h,
                           child: Container(
                               margin: EdgeInsets.all(2),
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: kTealColor,
                                 shape: BoxShape.circle,
                               ),
