@@ -10,51 +10,38 @@ class ProfileListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimationLimiter(
-      child: Column(
-        children: AnimationConfiguration.toStaggeredList(
-          duration: const Duration(seconds: 2),
-          childAnimationBuilder: (widget) => SlideAnimation(
-            verticalOffset: MediaQuery.of(context).size.width / 2,
-            child: FadeInAnimation(child: widget),
-          ),
-          children: [
-            SizedBox(
-              height: 390.h,
-              child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 1,
-                itemBuilder: (BuildContext context, int index) {
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      const ProfileList(
-                        titles: handWrist,
-                        subtitle: hour1,
-                        desc1: replies1,
-                        desc: "11",
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      const ProfileList(
-                        desc: "9",
-                        titles: que2,
-                        desc1: replies2,
-                        subtitle: hour2,
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                    ],
-                  );
-                },
+    return  SizedBox(
+      height: 390.h,
+      child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: 1,
+        itemBuilder: (BuildContext context, int index) {
+          return Column(
+            children: [
+              SizedBox(
+                height: 10.h,
               ),
-            ),
-          ],
-        ),
+              const ProfileList(
+                titles: handWrist,
+                subtitle: hour1,
+                desc1: replies1,
+                desc: "11",
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              const ProfileList(
+                desc: "9",
+                titles: que2,
+                desc1: replies2,
+                subtitle: hour2,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+            ],
+          );
+        },
       ),
     );
   }

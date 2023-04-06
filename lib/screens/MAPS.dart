@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:medical_flutter_ui/constant/string_constant.dart';
 import '../constant/color_constant.dart';
+import 'bottom_nav.dart';
 import 'bottom_sheet.dart';
 
 class MapScreen extends StatefulWidget {
@@ -134,6 +135,8 @@ class _MapScreenState extends State<MapScreen> {
         children: [
           GoogleMap(
             mapType: MapType.normal,
+
+
             onMapCreated: _onMapCreated,
             markers: _markers,
             initialCameraPosition: CameraPosition(
@@ -153,7 +156,12 @@ class _MapScreenState extends State<MapScreen> {
                     children: [
                       InkWell(
                          onTap: (){
-                           Navigator.pop(context);
+                           Navigator.push(
+                             context,
+                             MaterialPageRoute(
+                               builder: (context) => BottomNavPage(),
+                             ),
+                           );
                          },
                         child: Container(
                           height: 56,

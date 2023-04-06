@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:medical_flutter_ui/constant/color_constant.dart';
 import 'MAPS.dart';
 import 'Profile_screen.dart';
@@ -8,38 +9,7 @@ import 'chat_screen.dart';
 import 'feed_Screen.dart';
 import 'home_screen.dart';
 
-class StaggeredAnimation {
-  StaggeredAnimation({
-    required this.controller,
-    required this.duration,
-    required this.widget,
-  })   : opacity = Tween<double>(begin: 0.0, end: 1.0).animate(
-    CurvedAnimation(
-      parent: controller,
-      curve: const Interval(
-        0.0,
-        0.500,
-        curve: Curves.ease,
-      ),
-    ),
-  ),
-        translateY = Tween<double>(begin: 50.0, end: 0.0).animate(
-          CurvedAnimation(
-            parent: controller,
-            curve: const Interval(
-              0.500,
-              1.000,
-              curve: Curves.ease,
-            ),
-          ),
-        );
 
-  final AnimationController controller;
-  final Duration duration;
-  final Widget widget;
-  final Animation<double> opacity;
-  final Animation<double> translateY;
-}
 class BottomNavPage extends StatefulWidget {
   const BottomNavPage({
     Key? key,
@@ -48,18 +18,11 @@ class BottomNavPage extends StatefulWidget {
   @override
   State<BottomNavPage> createState() => _BottomNavPageState();
 }
+RxInt selectedIndex = 0.obs;
+class _BottomNavPageState extends State<BottomNavPage> {
 
-class _BottomNavPageState extends State<BottomNavPage>   with TickerProviderStateMixin {
 
-  int _selectedIndex = 0;
 
-  List<Widget> widgets = [
-    const HomePage(),
-    const FeedPage(),
-    const SizedBox(),
-    const ChatScreen(),
-    const ProfilePage(),
-  ];
   Future<bool> showExitPopup(context) async {
     return await showDialog(
         context: context,
@@ -82,7 +45,7 @@ class _BottomNavPageState extends State<BottomNavPage>   with TickerProviderStat
                           onPressed: () {
                             exit(0);
                           },
-                          style: ElevatedButton.styleFrom(backgroundColor:  kRedColor),
+                          style: ElevatedButton.styleFrom(backgroundColor: kRedColor),
                           child: Text(
                             "Yes",
                             style: TextStyle(fontFamily: "Montserrat", fontSize: 15.sp, fontWeight: FontWeight.w800, color: kWhiteColor),
@@ -92,17 +55,17 @@ class _BottomNavPageState extends State<BottomNavPage>   with TickerProviderStat
                       SizedBox(width: 15.w),
                       Expanded(
                           child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: kWhiteColor,
-                        ),
-                        child: Text(
-                          "No",
-                          style: TextStyle(fontFamily: "Montserrat", fontSize: 15.sp, fontWeight: FontWeight.w800, color: kBlackColor),
-                        ),
-                      ))
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: kWhiteColor,
+                            ),
+                            child: Text(
+                              "No",
+                              style: TextStyle(fontFamily: "Montserrat", fontSize: 15.sp, fontWeight: FontWeight.w800, color: kBlackColor),
+                            ),
+                          ))
                     ],
                   )
                 ],
@@ -118,102 +81,111 @@ class _BottomNavPageState extends State<BottomNavPage>   with TickerProviderStat
       onWillPop: () => showExitPopup(context),
       child: Scaffold(
         body:
-        IndexedStack(
-          index: _selectedIndex,
-          children: widgets,
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.white,
-          type: BottomNavigationBarType.fixed,
-          selectedIconTheme: const IconThemeData(color: kRedColor),
-          selectedLabelStyle: const TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 6,
-          ),
-          showSelectedLabels: true,
-          showUnselectedLabels: false,
-          items: <BottomNavigationBarItem>[
-            const BottomNavigationBarItem(
-              activeIcon: Icon(Icons.home, size: 30),
-              icon: Icon(
-                Icons.home_outlined,
-                size: 28,
-              ),
-              label: '🔴',
+        Obx(() {
+          return IndexedStack(
+            index: selectedIndex.value,
+            children: [
+              const HomePage(),
+              const FeedPage(),
+              const SizedBox(),
+              const ChatScreen(),
+              const ProfilePage(),
+            ],
+          );
+        }),
+        bottomNavigationBar: Obx(() {
+          return BottomNavigationBar(
+            backgroundColor: Colors.white,
+            type: BottomNavigationBarType.fixed,
+            selectedIconTheme: const IconThemeData(color: kRedColor),
+            selectedLabelStyle: const TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 6,
             ),
-            const BottomNavigationBarItem(
-              activeIcon: Icon(Icons.feed, size: 30),
-              icon: Icon(
-                Icons.feed_outlined,
-                size: 28,
+            showSelectedLabels: true,
+            showUnselectedLabels: false,
+            items: <BottomNavigationBarItem>[
+              const BottomNavigationBarItem(
+                activeIcon: Icon(Icons.home, size: 30),
+                icon: Icon(
+                  Icons.home_outlined,
+                  size: 28,
+                ),
+                label: '🔴',
               ),
-              label: '🔴',
-            ),
-            BottomNavigationBarItem(
-              icon: InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MapScreen(),
-                    ),
-                  );
-                },
-                child: Container(
-                  height: 56,
-                  width: 56,
-                  decoration: const BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: kRedColor,
-                        blurRadius: 5,
-                        offset: Offset.zero, // changes position of shadow
+              const BottomNavigationBarItem(
+                activeIcon: Icon(Icons.feed, size: 30),
+                icon: Icon(
+                  Icons.feed_outlined,
+                  size: 28,
+                ),
+                label: '🔴',
+              ),
+              BottomNavigationBarItem(
+                icon: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MapScreen(),
                       ),
-                    ],
-                    color: kWhiteColor,
-                    shape: BoxShape.circle,
+                    );
+                  },
+                  child: Container(
+                    height: 56,
+                    width: 56,
+                    decoration: const BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: kRedColor,
+                          blurRadius: 5,
+                          offset: Offset.zero, // changes position of shadow
+                        ),
+                      ],
+                      color: kWhiteColor,
+                      shape: BoxShape.circle,
+                    ),
+                    padding: const EdgeInsets.all(10),
+                    child: const Icon(
+                      Icons.add,
+                      color: kRedColor,
+                    ),
                   ),
-                  padding: const EdgeInsets.all(10),
+                ),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                activeIcon: const Icon(Icons.chat_bubble, size: 30),
+                icon: Container(
+                  padding: const EdgeInsets.all(0.8),
                   child: const Icon(
-                    Icons.add,
-                    color: kRedColor,
+                    Icons.chat_bubble_outline_rounded,
+                    size: 28,
+                  ),
+                  // ),
+                ),
+                label: '🔴',
+              ),
+              BottomNavigationBarItem(
+                activeIcon: const Icon(Icons.account_circle, size: 30),
+                icon: Container(
+                  padding: const EdgeInsets.all(0.8),
+                  child: const Icon(
+                    Icons.account_circle_outlined,
+                    size: 28,
                   ),
                 ),
+                label: '🔴',
               ),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              activeIcon: const Icon(Icons.chat_bubble, size: 30),
-              icon: Container(
-                padding: const EdgeInsets.all(0.8),
-                child: const Icon(
-                  Icons.chat_bubble_outline_rounded,
-                  size: 28,
-                ),
-                // ),
-              ),
-              label: '🔴',
-            ),
-            BottomNavigationBarItem(
-              activeIcon: const Icon(Icons.account_circle, size: 30),
-              icon: Container(
-                padding: const EdgeInsets.all(0.8),
-                child: const Icon(
-                  Icons.account_circle_outlined,
-                  size: 28,
-                ),
-              ),
-              label: '🔴',
-            ),
-          ],
-          onTap: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-            debugPrint('current index is $index');
-          },
-          currentIndex: _selectedIndex,
-        ),
+            ],
+            onTap: (index) {
+              selectedIndex.value = index;
+
+              debugPrint('current index is $index');
+            },
+            currentIndex: selectedIndex.value,
+          );
+        }),
       ),
     );
   }

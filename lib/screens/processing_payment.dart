@@ -57,10 +57,10 @@ class _ProcessingPaymentPageState extends State<ProcessingPaymentPage> {
                                   ),
                                 ],
                               ),
-                            ),
-                            Positioned(left: 2,
-
-                              right:0.w,
+                             ),
+                            Positioned(
+                              left: 2,
+                              right: 0.w,
                               top: 1,
                               bottom: 1,
                               child: FittedBox(
@@ -79,7 +79,6 @@ class _ProcessingPaymentPageState extends State<ProcessingPaymentPage> {
                                         Icon(Icons.more_horiz_rounded, size: 50.sp, color: kWhiteColor),
                                       ],
                                     )),
-
                               ),
                             ),
                           ],
@@ -91,7 +90,6 @@ class _ProcessingPaymentPageState extends State<ProcessingPaymentPage> {
                           textAlign: TextAlign.center,
                         ),
                       ],
-
                     );
                   } else {
                     return Column(
@@ -101,7 +99,7 @@ class _ProcessingPaymentPageState extends State<ProcessingPaymentPage> {
                           decoration: BoxDecoration(
                             color: Colors.transparent,
                             shape: BoxShape.circle,
-                            border: Border.all(color:  Colors.grey.shade300, width: 2),
+                            border: Border.all(color: Colors.grey.shade300, width: 2),
                           ),
                           width: 120.w,
                           height: 130.h,
